@@ -1,9 +1,9 @@
 const BaseController = require("./base");
 
 module.exports = class Test extends BaseController {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   before(req, res) {
     console.log("Request come in!" + req.originalUrl)
@@ -41,7 +41,7 @@ module.exports = class Test extends BaseController {
     this.success(null, "test");
   }
 
-  'get /test5' () {
-    this.failed(400, null, "test");
+  'get /test5/:msg' () {
+    this.failed(400, this.req.params.msg, "test");
   }
 }
