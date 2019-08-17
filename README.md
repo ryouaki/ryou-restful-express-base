@@ -19,7 +19,12 @@
 
 ## Controller说明
 
-每一个controller代表着一个模块，模块的路径以类名小写开始，比如下面这个controller访问路径为：get /api/test/test1
+每一个controller代表着一个模块，模块的路径以类名小写开始，比如下面这个controller访问路径为：get [config.appid]/[controller类名小写]/[函数名]，例如: get /api/v1/webapi/test/test1
+
+controller方法名命名规则：
+1. {HTTP方法}${路径1}${路径2}${_PARAM参数}
+2. {HTTP方法 路径}
+
 ```js
   const BaseController = require("./base"); // 所有controller 必须继承自baseController
 

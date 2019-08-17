@@ -14,7 +14,7 @@ const app = express();
 
 app.use(methodOverride());
 
-app.use("/api", require('./route'));
+app.use(config.appid, require('./route'));
 
 app.use((req, res) => {
   res.status(404).json({

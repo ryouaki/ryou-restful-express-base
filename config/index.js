@@ -5,10 +5,12 @@ const path = require('path');
 const pkg = require(path.resolve(__dirname, '../package.json'));
 
 const {
-  NODE_PORT = 3000
+  NODE_PORT = 3000,
+  APPID = '/api/v1/webapi'
 } = process.env;
 
 module.exports = {
   name: pkg.name,
-  port: NODE_PORT
+  port: NODE_PORT,
+  appid: APPID
 }
