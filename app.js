@@ -5,13 +5,13 @@
 // 加载系统模块
 const express = require('express');
 const methodOverride = require('method-override');
+require('./utils/logger')
 
 // 加载配置模块
 const config = require('./config');
 
 // 实例化应用
 const app = express();
-
 app.use(methodOverride());
 
 app.use(config.appid, require('./route'));
