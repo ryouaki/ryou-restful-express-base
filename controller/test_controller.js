@@ -73,4 +73,13 @@ module.exports = class Test extends BaseController {
   'get /test5/:msg' () {
     this.failed(400, this.req.params.msg, "test");
   }
+
+  'get /session/test' () {
+    if (this.req.session.views) {
+      this.req.session.views++
+    } else {
+      this.req.session.views = 1
+    }
+    this.success(this.req.session, "test");
+  }
 }

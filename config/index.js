@@ -6,11 +6,21 @@ const pkg = require(path.resolve(__dirname, '../package.json'));
 
 const {
   NODE_PORT = 3000,
-  APPID = '/api/v1/webapi'
+  APPNAME = 'RESTFUL',
+  APPID = '/api/v1/webapi',
+  REDIS_HOST = '192.168.22.53',
+  REDIS_PORT = 6379,
+  SESSION_SECRET = 'RESTFUL'
 } = process.env;
 
 module.exports = {
   name: pkg.name,
   port: NODE_PORT,
-  appid: APPID
+  appid: APPID,
+  session: {
+    host: `redis://${REDIS_HOST}:${REDIS_PORT}`,
+    secret: SESSION_SECRET,
+    defaultTtl: 24 * 60 * 60 * 1000 * 7,
+    defaultDomain: 'localhost'
+  }
 }

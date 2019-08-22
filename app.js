@@ -5,15 +5,14 @@
 // 加载系统模块
 const express = require('express');
 const methodOverride = require('method-override');
-require('./utils/logger')
 
 // 加载配置模块
 const config = require('./config');
-
+const session = require('./middleware/session');
 // 实例化应用
 const app = express();
 app.use(methodOverride());
-
+app.use(session);
 app.use(config.appid, require('./route'));
 
 app.use((req, res) => {
@@ -26,6 +25,7 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   if (err) {
+    console.error(err);
     res.status(500).json({
       code: 999999,
       msg: "Server error happened!",
