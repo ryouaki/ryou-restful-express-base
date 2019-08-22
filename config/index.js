@@ -19,8 +19,8 @@ module.exports = {
   name: pkg.name,
   port: NODE_PORT,
   appid: APPID,
-  redis: `redis://${REDIS_HOST}:${REDIS_PORT}`,
   session: {
+    host: `redis://${REDIS_HOST}:${REDIS_PORT}`,
     secret: SESSION_SECRET,
     ttl: TTL,
     domain: DOMAIN

@@ -13,7 +13,6 @@ const session = require('./middleware/redis-session');
 const app = express();
 app.use(methodOverride());
 app.use(session({
-  redis: config.redis,
   ...config.session
 }));
 app.use(config.appid, require('./route'));

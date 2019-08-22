@@ -8,7 +8,7 @@ module.exports = function(opts, others = {}) {
     resave: opts.resave || false,
     saveUninitialized: opts.saveUninitialized || true,
     store: new RedisStore({
-      client: new Redis(opts.redis)
+      client: new Redis(opts.host)
     }),
     cookie: {
       httpOnly: opts.httpOnly || true,
