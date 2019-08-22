@@ -10,17 +10,19 @@ const {
   APPID = '/api/v1/webapi',
   REDIS_HOST = '192.168.22.53',
   REDIS_PORT = 6379,
-  SESSION_SECRET = 'RESTFUL'
+  SESSION_SECRET = 'RESTFUL',
+  TTL = 24 * 60 * 60 * 1000 * 7,
+  DOMAIN = 'localhost'
 } = process.env;
 
 module.exports = {
   name: pkg.name,
   port: NODE_PORT,
   appid: APPID,
+  redis: `redis://${REDIS_HOST}:${REDIS_PORT}`,
   session: {
-    host: `redis://${REDIS_HOST}:${REDIS_PORT}`,
     secret: SESSION_SECRET,
-    defaultTtl: 24 * 60 * 60 * 1000 * 7,
-    defaultDomain: 'localhost'
+    ttl: TTL,
+    domain: DOMAIN
   }
 }

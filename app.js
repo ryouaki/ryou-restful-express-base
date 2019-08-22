@@ -8,11 +8,14 @@ const methodOverride = require('method-override');
 
 // 加载配置模块
 const config = require('./config');
-const session = require('./middleware/session');
+const session = require('./middleware/redis-session');
 // 实例化应用
 const app = express();
 app.use(methodOverride());
-app.use(session);
+app.use(session({
+  redis: config.redis,
+  ...config.session
+}));
 app.use(config.appid, require('./route'));
 
 app.use((req, res) => {
