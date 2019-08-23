@@ -1,4 +1,4 @@
-const BaseController = require("./base");
+const { BaseController } = require("ryou-router");
 
 module.exports = class Test extends BaseController {
   before(req, res) {

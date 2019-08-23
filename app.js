@@ -15,7 +15,7 @@ app.use(methodOverride());
 app.use(session({
   ...config.session
 }));
-app.use(config.appid, require('./route'));
+app.use(config.appid, require('ryou-router').router());
 
 app.use((req, res) => {
   res.status(404).json({
