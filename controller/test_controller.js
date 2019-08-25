@@ -58,6 +58,12 @@ module.exports = class Test extends BaseController {
     }
   }
 
+  async 'post /upload' (req, res) {
+    const file = req.files && req.files.file || null;
+    const body = req.body;
+    await console.log("test")
+  }
+
   'get /test3' () {
     return {
       code: 0,

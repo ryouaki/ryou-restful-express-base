@@ -5,6 +5,8 @@
 // 加载系统模块
 const express = require('express');
 const methodOverride = require('method-override');
+const bodyParser = require('body-parser');
+const multiparty = require('connect-multiparty');
 
 // 加载配置模块
 const config = require('./config');
@@ -12,6 +14,10 @@ const session = require('./middleware/redis-session');
 // 实例化应用
 const app = express();
 app.use(methodOverride());
+app.use(bodyParser.json({limit: config.bodylimit}));
+app.use(bodyParser.urlencoded({ extended: true, limit: config.bodylimit }));
+const upload = multiparty({ uploadDir: config.uploadPath });
+app.use(upload);
 app.use(session({
   ...config.session
 }));
