@@ -18,6 +18,7 @@ app.use(bodyParser.json({limit: config.bodylimit}));
 app.use(bodyParser.urlencoded({ extended: true, limit: config.bodylimit }));
 const upload = multiparty({ uploadDir: config.uploadPath });
 app.use(upload);
+
 app.use(session({
   ...config.session
 }));

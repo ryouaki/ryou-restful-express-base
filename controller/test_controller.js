@@ -1,4 +1,6 @@
 const { BaseController } = require("ryou-router");
+const path = require('path');
+const config = require('./../config');
 
 module.exports = class Test extends BaseController {
   before(req, res) {
@@ -58,10 +60,17 @@ module.exports = class Test extends BaseController {
     }
   }
 
-  async 'post /upload' (req, res) {
+  'post /upload' (req, res) {
     const file = req.files && req.files.file || null;
     const body = req.body;
-    await console.log("test")
+    return {
+      code: 0
+    }
+  }
+
+  'get /download/:file' (req, res) {
+    const file = req.params.file;
+    res.download(path.join(config.uploadPath, file));
   }
 
   'get /test3' () {

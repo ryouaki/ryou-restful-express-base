@@ -16,7 +16,7 @@
     "express-session": "^1.16.2",
     "ioredis": "^4.14.0",
     "method-override": "^3.0.0",
-    "ryou-router": "^1.0.1"
+    "ryou-router": "^1.0.3"
   },
   "devDependencies": {
     "apidoc": "^0.17.7"
