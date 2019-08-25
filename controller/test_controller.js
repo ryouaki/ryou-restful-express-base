@@ -1,5 +1,8 @@
 const { BaseController } = require("ryou-router");
 const path = require('path');
+const xlsx = require('xlsx');
+const fs = require('fs');
+
 const config = require('./../config');
 
 module.exports = class Test extends BaseController {
@@ -58,6 +61,18 @@ module.exports = class Test extends BaseController {
       data: null,
       msg: this.req.params.id
     }
+  }
+
+  'post /excel' (req, res) {
+    const file = req.files && req.files.file || null;
+    const body = req.body;
+
+    const data = fs.readFileSync(file.path);
+    let buff = xlsx.read(data, {type:'buffer'});
+
+    buff = buff.Sheets[buff.SheetNames[0]];
+    
+    return xlsx.utils.sheet_to_json(buff, {header:1});
   }
 
   'post /upload' (req, res) {
