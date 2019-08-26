@@ -10,7 +10,12 @@ const multiparty = require('connect-multiparty');
 
 // 加载配置模块
 const config = require('./config');
-const session = require('./middleware/redis-session');
+let session = null;
+if (process.env.SESSION_TYPE === 'mysql') {
+  session = require('./middleware/mysql-session');
+} else {
+  session = require('./middleware/redis-session')
+}
 // 实例化应用
 const app = express();
 app.use(methodOverride());

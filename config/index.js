@@ -10,12 +10,31 @@ const {
   APPID = '/api/v1/webapi',
   REDIS_HOST = '192.168.22.53',
   REDIS_PORT = 6379,
+  MYSQL_HOST = '172.17.134.3',
+  MYSQL_PORT = 3306,
+  MYSQL_USER = 'root',
+  MYSQL_PASSWORD = '1qazXSW2!@#$',
   SESSION_SECRET = 'RESTFUL',
   TTL = 24 * 60 * 60 * 1000 * 7,
   DOMAIN = 'localhost',
   BODY_LIMIT = 1000,
-  UPLOAD_PATH = 'uploads/'
+  UPLOAD_PATH = 'uploads/',
+  SESSION_TYPE = 'mysql'
 } = process.env;
+
+let host = `redis://${REDIS_HOST}:${REDIS_PORT}`;
+
+if (SESSION_TYPE === 'mysql') {
+  host = {
+    createDatabaseTable: false,
+    connectionLimit : 1,
+    host            : MYSQL_HOST,
+    port            : MYSQL_PORT,
+    user            : MYSQL_USER,
+    password        : MYSQL_PASSWORD,
+    database        : 'elens_session'
+  }
+}
 
 module.exports = {
   name: pkg.name,
@@ -24,7 +43,7 @@ module.exports = {
   bodylimit: `${BODY_LIMIT}mb`,
   uploadPath: UPLOAD_PATH,
   session: {
-    host: `redis://${REDIS_HOST}:${REDIS_PORT}`,
+    host: host,
     secret: SESSION_SECRET,
     ttl: TTL,
     domain: DOMAIN
