@@ -1,12 +1,13 @@
 {
-  "name": "full-stack",
-  "version": "1.0.0",
-  "description": "",
+  "name": "{{name}}",
+  "description": "{{description}}",
+  "author": {
+    "name": "{{author}}"
+  },
   "main": "app.js",
   "scripts": {
     "apidoc": "apidoc -i ./controller -o ./apidocs"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "@elastic/elasticsearch": "^7.3.0",
@@ -19,8 +20,7 @@
     "ioredis": "^4.14.0",
     "method-override": "^3.0.0",
     "mysql": "^2.17.1",
-    "ryou-router": "^1.1.0",
-    "xlsx": "^0.15.1"
+    "ryou-router": "^1.2.1"
   },
   "devDependencies": {
     "apidoc": "^0.17.7"
